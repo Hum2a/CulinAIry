@@ -18,20 +18,6 @@ app.use(bodyParser.json());
 // Routes
 app.use('/api/recipes', recipeRoutes);
 app.use('/api/meal-planner', mealPlannerRoutes);
-app.use('/api/login', loginRouter);
-
-
-// Start the server
-
-const path = require('path');
-
-// Serve React app
-app.use(express.static(path.join(__dirname, 'build')));
-
-// Handle React routing, return all requests to React app
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
 
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
