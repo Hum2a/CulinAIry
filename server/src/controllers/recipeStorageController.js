@@ -1,4 +1,4 @@
-const { db } = require('../configs/firebase');
+const { db } = require('../../../client/src/firebase');
 
 const saveRecipe = async (req, res) => {
   try {

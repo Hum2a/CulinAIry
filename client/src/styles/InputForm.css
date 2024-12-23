@@ -1,42 +1,99 @@
 .input-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: 500px;
-    margin: 1rem auto;
-  }
-  
-  .input-textarea {
-    width: 100%;
-    min-height: 100px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 0.75rem;
-    font-size: 1rem;
-    margin-bottom: 1rem;
-    resize: none;
-    transition: border-color 0.3s ease;
-  }
-  
-  .input-textarea:focus {
-    outline: none;
-    border-color: #1a73e8;
-    box-shadow: 0 0 5px rgba(26, 115, 232, 0.5);
-  }
-  
-  .input-button {
-    padding: 0.75rem 1.5rem;
-    background-color: #1a73e8;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .input-button:hover {
-    background-color: #135bb5;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: 1rem auto;
+}
+
+.input-textarea {
+  width: 100%;
+  min-height: 100px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 0.75rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  resize: none;
+  transition: border-color 0.3s ease;
+}
+
+.input-textarea:focus {
+  outline: none;
+  border-color: #1a73e8;
+  box-shadow: 0 0 5px rgba(26, 115, 232, 0.5);
+}
+
+.input-button {
+  padding: 0.75rem 1.5rem;
+  background-color: #1a73e8;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.input-button:hover {
+  background-color: #135bb5;
+}
+
+.save-button {
+  margin-top: 1rem; /* Adds space between the generated recipe and the save button */
+  padding: 0.75rem 1.5rem;
+  background-color: #28a745; /* Green color for save button */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.save-button:hover {
+  background-color: #218838;
+}
+
+.ingredient-field {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.input-text {
+  flex: 1;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 0.5rem;
+}
+
+.add-button, .remove-button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-button {
+  background-color: #1a73e8;
+  color: white;
+  margin: 0 0 10px 0;
+}
+
+.add-button:hover {
+  background-color: #135bb5;
+}
+
+.remove-button {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.remove-button:hover {
+  background-color: #c0392b;
+}

@@ -1,21 +1,64 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { db } from '../firebase';
+import { useAuth } from '../context/AuthContext';
 import '../styles/InputForm.css';
 
 const InputForm = ({ onRecipeGenerated }) => {
-  const [ingredients, setIngredients] = useState('');
+  const [ingredients, setIngredients] = useState(['']);
   const [loading, setLoading] = useState(false);
+  const [preferences, setPreferences] = useState({});
+  const [recipe, setRecipe] = useState('');
+  const { user } = useAuth();
+
+  useEffect(() => {
+    const fetchPreferences = async () => {
+      if (!user) return;
+
+      try {
+        const docRef = doc(db, 'users', user.uid);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          setPreferences(docSnap.data().preferences || {});
+        }
+      } catch (error) {
+        console.error('Error fetching preferences:', error);
+      }
+    };
+
+    fetchPreferences();
+  }, [user]);
+
+  const handleInputChange = (index, value) => {
+    const updatedIngredients = [...ingredients];
+    updatedIngredients[index] = value;
+    setIngredients(updatedIngredients);
+  };
+
+  const handleAddField = () => {
+    setIngredients([...ingredients, '']);
+  };
+
+  const handleRemoveField = (index) => {
+    setIngredients(ingredients.filter((_, i) => i !== index));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!ingredients) return alert('Please enter ingredients.');
+    const filteredIngredients = ingredients.filter((ingredient) => ingredient.trim() !== '');
+    if (filteredIngredients.length === 0) return alert('Please enter at least one ingredient.');
 
     setLoading(true);
     try {
       const response = await axios.post('http://localhost:5000/api/recipes/generate', {
-        ingredients: ingredients.split(',').map((item) => item.trim()),
+        ingredients: filteredIngredients,
+        preferences,
       });
-      onRecipeGenerated(response.data.recipe);
+      const generatedRecipe = response.data.recipe;
+      setRecipe(generatedRecipe);
+      onRecipeGenerated(generatedRecipe);
     } catch (error) {
       console.error('Error generating recipe:', error);
       alert('Failed to generate recipe. Try again later.');
@@ -24,18 +67,55 @@ const InputForm = ({ onRecipeGenerated }) => {
     }
   };
 
+  const handleSaveRecipe = async () => {
+    if (!user || !recipe) return alert('You need to be logged in to save recipes.');
+
+    try {
+      const docRef = doc(db, 'users', user.uid, 'savedRecipes', new Date().toISOString());
+      await setDoc(docRef, { recipe, createdAt: new Date() });
+      alert('Recipe saved successfully!');
+    } catch (error) {
+      console.error('Error saving recipe:', error);
+      alert('Failed to save recipe.');
+    }
+  };
+
   return (
-    <form onSubmit={handleSubmit} className="input-form">
-      <textarea
-        value={ingredients}
-        onChange={(e) => setIngredients(e.target.value)}
-        placeholder="Enter ingredients separated by commas"
-        className="input-textarea"
-      />
-      <button type="submit" className="input-button">
-        {loading ? 'Generating...' : 'Generate Recipe'}
-      </button>
-    </form>
+    <div>
+      <form onSubmit={handleSubmit} className="input-form">
+        {ingredients.map((ingredient, index) => (
+          <div key={index} className="ingredient-field">
+            <input
+              type="text"
+              value={ingredient}
+              onChange={(e) => handleInputChange(index, e.target.value)}
+              placeholder={`Ingredient ${index + 1}`}
+              className="input-text"
+            />
+            <button
+              type="button"
+              className="remove-button"
+              onClick={() => handleRemoveField(index)}
+            >
+              Remove
+            </button>
+          </div>
+        ))}
+        <button type="button" className="add-button" onClick={handleAddField}>
+          Add Ingredient
+        </button>
+        <button type="submit" className="input-button">
+          {loading ? 'Generating...' : 'Generate Recipe'}
+        </button>
+      </form>
+      {recipe && (
+        <div className="recipe-container">
+          <button onClick={handleSaveRecipe} className="save-button">
+            Save Recipe
+          </button>
+        </div>
+      )}
+    </div>
   );
 };
 

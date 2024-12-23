@@ -2,14 +2,20 @@ const { openai } = require('../configs/openaiConfig');
 
 const generateRecipe = async (req, res) => {
   try {
-    const { ingredients } = req.body;
+    const { ingredients, preferences } = req.body;
 
     // Validate input
     if (!ingredients || !Array.isArray(ingredients) || ingredients.length === 0) {
       return res.status(400).json({ error: 'Ingredients must be a non-empty array.' });
     }
 
-    const prompt = `Generate a recipe using these ingredients: ${ingredients.join(', ')}. Provide detailed steps and measurements.`;
+    let dietaryPreferences = '';
+    if (preferences) {
+      const { diet, customDiet } = preferences;
+      dietaryPreferences = `Ensure the recipe is suitable for ${diet || ''}${customDiet ? ` and ${customDiet}` : ''}.`;
+    }
+
+    const prompt = `Generate a recipe using these ingredients: ${ingredients.join(', ')}. ${dietaryPreferences} Provide detailed steps and measurements.`;
     const response = await openai.chat.completions.create({
       model: 'gpt-4',
       messages: [{ role: 'user', content: prompt }],
