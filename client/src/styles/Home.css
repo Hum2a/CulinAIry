@@ -1,0 +1,44 @@
+/* Home page specific styles */
+.home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+  }
+  
+  .home h1 {
+    font-size: 2.5rem;
+    color: #1a73e8;
+    margin-bottom: 1rem;
+  }
+  
+  .home p {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #555;
+  }
+  
+  .home .form-container {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .home textarea {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  
+  .home button {
+    align-self: center;
+  }
+  
+  .home .recipe-container {
+    width: 100%;
+    max-width: 600px;
+    margin-top: 2rem;
+  }
+  
