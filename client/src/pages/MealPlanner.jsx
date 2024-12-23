@@ -14,7 +14,7 @@ const MealPlanner = () => {
     const fetchSavedRecipes = async () => {
       if (!user) return;
       try {
-        const response = await axios.get(`http://localhost:5000/api/recipes/saved/${user.uid}`);
+        const response = await axios.get(`${process.env.REACT_APP_PUBLIC_URL}/api/recipes/saved/${user.uid}`);
         setSavedRecipes(response.data.recipes);
       } catch (error) {
         console.error('Error fetching saved recipes:', error);
@@ -29,7 +29,7 @@ const MealPlanner = () => {
       return;
     }
     try {
-      const response = await axios.post('http://localhost:5000/api/meal-planner/generate', {
+      const response = await axios.post(`${process.env.REACT_APP_PUBLIC_URL}/api/meal-planner/generate`, {
         savedRecipes,
         mealsPerDay: Number(mealsPerDay),
         days: Number(days),

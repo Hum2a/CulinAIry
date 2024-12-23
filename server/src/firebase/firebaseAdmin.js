@@ -1,5 +1,5 @@
 const admin = require('firebase-admin');
-const serviceAccount = require('./culinairy-f6a1e-firebase-adminsdk-mn0hc-b88f9157ef.json'); // Replace with your service account key file
+const serviceAccount = require('./etc/secrets/culinairy-f6a1e-firebase-adminsdk-mn0hc-b88f9157ef.json'); // Replace with your service account key file
 
 if (!admin.apps.length) {
     admin.initializeApp({

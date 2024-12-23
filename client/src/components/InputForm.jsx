@@ -52,7 +52,7 @@ const InputForm = ({ onRecipeGenerated }) => {
 
     setLoading(true);
     try {
-      const response = await axios.post('http://localhost:5000/api/recipes/generate', {
+      const response = await axios.post(`${process.env.REACT_APP_PUBLIC_URL}/api/recipes/generate`, {
         ingredients: filteredIngredients,
         preferences,
       });
