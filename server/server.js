@@ -18,6 +18,8 @@ app.use(bodyParser.json());
 // Routes
 app.use('/api/recipes', recipeRoutes);
 app.use('/api/meal-planner', mealPlannerRoutes);
+app.use('/api/login', loginRouter);
+
 
 // Start the server
 

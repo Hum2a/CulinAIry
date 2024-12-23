@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'; // Import Link from React Router
 import { useAuth } from '../context/AuthContext';
 import '../styles/Navbar.css';
 
@@ -8,25 +9,25 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-brand">
-        <a href="/" className="navbar-logo">Culin<span>AI</span>ry</a>
+        <Link to="/" className="navbar-logo">Culin<span>AI</span>ry</Link>
       </div>
       <ul className="navbar-links">
         <li>
-          <a href="/" className="navbar-link">Home</a>
+          <Link to="/" className="navbar-link">Home</Link>
         </li>
         <li>
-          <a href="/about" className="navbar-link">About</a>
+          <Link to="/about" className="navbar-link">About</Link>
         </li>
         {user ? (
           <>
             <li>
-              <a href="/meal-planner" className="navbar-link">Meal Planner</a>
+              <Link to="/meal-planner" className="navbar-link">Meal Planner</Link>
             </li>
             <li>
-              <a href="/saved-recipes" className="navbar-link">Saved Recipes</a>
+              <Link to="/saved-recipes" className="navbar-link">Saved Recipes</Link>
             </li>
             <li>
-              <a href="/profile" className="navbar-link">Profile</a>
+              <Link to="/profile" className="navbar-link">Profile</Link>
             </li>
             <li>
               <button onClick={logout} className="navbar-logout">Logout</button>
@@ -34,7 +35,7 @@ const Navbar = () => {
           </>
         ) : (
           <li>
-            <a href="/login" className="navbar-link">Login</a>
+            <Link to="/login" className="navbar-link">Login</Link>
           </li>
         )}
       </ul>
