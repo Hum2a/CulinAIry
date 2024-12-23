@@ -81,8 +81,9 @@ const InputForm = ({ onRecipeGenerated }) => {
   };
 
   return (
-    <div>
+    <div className="input-form-container">
       <form onSubmit={handleSubmit} className="input-form">
+        <h1 className="form-title">Generate Your Recipe</h1>
         {ingredients.map((ingredient, index) => (
           <div key={index} className="ingredient-field">
             <input
@@ -97,12 +98,12 @@ const InputForm = ({ onRecipeGenerated }) => {
               className="remove-button"
               onClick={() => handleRemoveField(index)}
             >
-              Remove
+              ✖
             </button>
           </div>
         ))}
         <button type="button" className="add-button" onClick={handleAddField}>
-          Add Ingredient
+          + Add Ingredient
         </button>
         <button type="submit" className="input-button">
           {loading ? 'Generating...' : 'Generate Recipe'}
@@ -110,6 +111,8 @@ const InputForm = ({ onRecipeGenerated }) => {
       </form>
       {recipe && (
         <div className="recipe-container">
+          <h2 className="generated-recipe-title">Generated Recipe</h2>
+          <p className="recipe-content">{recipe}</p>
           <button onClick={handleSaveRecipe} className="save-button">
             Save Recipe
           </button>

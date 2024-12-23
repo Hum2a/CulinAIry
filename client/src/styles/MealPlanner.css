@@ -1,0 +1,136 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom, #f9fafb, #e3f2fd);
+    margin: 0;
+    padding: 0;
+  }
+  
+  .meal-planner {
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+    color: #1a73e8;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .meal-planner-form {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .form-label {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #444;
+    margin-bottom: 0.5rem;
+  }
+  
+  .form-input {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 200px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .form-input:focus {
+    outline: none;
+    border-color: #1a73e8;
+    transform: scale(1.02);
+    box-shadow: 0 0 10px rgba(26, 115, 232, 0.5);
+  }
+  
+  .form-button {
+    padding: 0.75rem 2rem;
+    background: linear-gradient(to right, #1a73e8, #4fc3f7);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.3s ease;
+  }
+  
+  .form-button:hover {
+    transform: scale(1.05);
+    background: linear-gradient(to right, #135bb5, #0288d1);
+  }
+  
+  .meal-plan {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+  }
+  
+  .day-plan {
+    background: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 1.5rem;
+    width: 300px;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+  }
+  
+  .day-plan:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .day-title {
+    font-size: 1.5rem;
+    color: #1a73e8;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+  
+  .meal-slot {
+    margin-top: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .meal-slot:hover {
+    background-color: #f0f8ff;
+    transform: scale(1.03);
+  }
+  
+  .meal-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .meal-content {
+    font-size: 1rem;
+    color: #666;
+  }
+  

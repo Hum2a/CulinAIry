@@ -1,64 +1,53 @@
+.input-form-container {
+  padding: 2rem;
+  text-align: center;
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-title {
+  font-size: 2rem;
+  color: #1a73e8;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
 .input-form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 1rem;
   width: 100%;
-  margin: 1rem auto;
-}
-
-.input-textarea {
-  width: 100%;
-  min-height: 100px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 0.75rem;
-  font-size: 1rem;
-  margin-bottom: 1rem;
-  resize: none;
-  transition: border-color 0.3s ease;
-}
-
-.input-textarea:focus {
-  outline: none;
-  border-color: #1a73e8;
-  box-shadow: 0 0 5px rgba(26, 115, 232, 0.5);
-}
-
-.input-button {
-  padding: 0.75rem 1.5rem;
-  background-color: #1a73e8;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.input-button:hover {
-  background-color: #135bb5;
-}
-
-.save-button {
-  margin-top: 1rem; /* Adds space between the generated recipe and the save button */
-  padding: 0.75rem 1.5rem;
-  background-color: #28a745; /* Green color for save button */
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.save-button:hover {
-  background-color: #218838;
 }
 
 .ingredient-field {
   display: flex;
   align-items: center;
-  margin-bottom: 1rem;
+  width: 100%;
+  max-width: 400px;
+  animation: slideIn 0.3s ease-in-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .input-text {
@@ -66,34 +55,85 @@
   padding: 0.5rem;
   font-size: 1rem;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 8px;
   margin-right: 0.5rem;
+  transition: border-color 0.3s ease, transform 0.2s ease;
 }
 
-.add-button, .remove-button {
-  padding: 0.5rem 1rem;
+.input-text:focus {
+  outline: none;
+  border-color: #1a73e8;
+  transform: scale(1.02);
+  box-shadow: 0 0 5px rgba(26, 115, 232, 0.5);
+}
+
+.add-button, .remove-button, .input-button, .save-button {
+  padding: 0.75rem 1.5rem;
   font-size: 1rem;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .add-button {
-  background-color: #1a73e8;
+  background: linear-gradient(to right, #4caf50, #8bc34a);
   color: white;
-  margin: 0 0 10px 0;
 }
 
 .add-button:hover {
-  background-color: #135bb5;
+  background: linear-gradient(to right, #388e3c, #689f38);
+  transform: scale(1.05);
 }
 
 .remove-button {
   background-color: #e74c3c;
   color: white;
+  font-size: 1.2rem;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  text-align: center;
+  line-height: 1.8rem;
 }
 
 .remove-button:hover {
   background-color: #c0392b;
+}
+
+.input-button {
+  background: linear-gradient(to right, #1a73e8, #4fc3f7);
+  color: white;
+  margin-top: 1rem;
+}
+
+.input-button:hover {
+  background: linear-gradient(to right, #135bb5, #0288d1);
+  transform: scale(1.05);
+}
+
+.save-button {
+  background: linear-gradient(to right, #ff9800, #ffc107);
+  color: white;
+  margin-top: 1rem;
+}
+
+.save-button:hover {
+  background: linear-gradient(to right, #f57c00, #ffb300);
+  transform: scale(1.05);
+}
+
+.recipe-container {
+  margin-top: 2rem;
+}
+
+.generated-recipe-title {
+  font-size: 1.5rem;
+  color: #1a73e8;
+  margin-bottom: 1rem;
+}
+
+.recipe-content {
+  font-size: 1rem;
+  color: #555;
 }

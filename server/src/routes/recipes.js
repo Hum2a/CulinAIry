@@ -4,7 +4,6 @@ const { saveRecipe, getSavedRecipes } = require('../controllers/recipeStorageCon
 const router = express.Router();
 
 router.post('/generate', generateRecipe);       // Generate recipe
-router.post('/save', saveRecipe);              // Save recipe
-router.get('/saved', getSavedRecipes);         // Retrieve saved recipes
+router.get('/saved/:uid', getSavedRecipes);    // Retrieve saved recipes
 
 module.exports = router;

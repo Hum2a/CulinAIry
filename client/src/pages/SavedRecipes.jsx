@@ -17,7 +17,7 @@ const SavedRecipes = () => {
       try {
         const savedRecipesRef = collection(db, 'users', user.uid, 'savedRecipes');
         const querySnapshot = await getDocs(savedRecipesRef);
-        const recipes = querySnapshot.docs.map(doc => ({
+        const recipes = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
@@ -42,9 +42,13 @@ const SavedRecipes = () => {
       ) : (
         <div className="saved-recipes-list">
           {savedRecipes.map((recipe) => (
-            <div key={recipe.id} className="recipe-card">
-              <div className="recipe-summary" onClick={() => handleExpandRecipe(recipe.id)}>
-                {recipe.recipe.split('\n')[0]} {/* Display the first line */}
+            <div
+              key={recipe.id}
+              className={`recipe-card ${expandedRecipe === recipe.id ? 'expanded' : ''}`}
+              onClick={() => handleExpandRecipe(recipe.id)}
+            >
+              <div className="recipe-summary">
+                {recipe.recipe.split('\n')[0]}
               </div>
               {expandedRecipe === recipe.id && (
                 <div className="recipe-details">

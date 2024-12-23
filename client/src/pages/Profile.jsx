@@ -73,7 +73,7 @@ const Profile = () => {
     }
   };
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <p className="loading">Loading...</p>;
 
   return (
     <div className="profile-container">
@@ -86,11 +86,13 @@ const Profile = () => {
             name="displayName"
             value={formData.displayName}
             onChange={handleChange}
+            placeholder="Enter your display name"
+            className="form-input"
           />
         </label>
         <label>
           Dietary Preference:
-          <select name="diet" value={formData.diet} onChange={handleChange}>
+          <select name="diet" value={formData.diet} onChange={handleChange} className="form-select">
             <option value="">None</option>
             <option value="Vegetarian">Vegetarian</option>
             <option value="Vegan">Vegan</option>
@@ -107,12 +109,13 @@ const Profile = () => {
               value={formData.customDiet}
               onChange={handleChange}
               placeholder="Enter your custom preference"
+              className="form-input"
             />
           </label>
         )}
         <label>
           Theme:
-          <select name="theme" value={formData.theme} onChange={handleChange}>
+          <select name="theme" value={formData.theme} onChange={handleChange} className="form-select">
             <option value="Light">Light</option>
             <option value="Dark">Dark</option>
           </select>
@@ -124,9 +127,12 @@ const Profile = () => {
             name="notifications"
             checked={formData.notifications}
             onChange={handleChange}
+            className="form-checkbox"
           />
         </label>
-        <button onClick={handleSave}>Save Changes</button>
+        <button onClick={handleSave} className="form-button">
+          Save Changes
+        </button>
       </div>
     </div>
   );

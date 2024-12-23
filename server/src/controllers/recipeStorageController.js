@@ -1,42 +1,21 @@
-const { db } = require('../../../client/src/firebase');
-
-const saveRecipe = async (req, res) => {
-  try {
-    const { userId, recipe } = req.body;
-
-    if (!userId || !recipe) {
-      return res.status(400).json({ error: 'User ID and recipe are required.' });
-    }
-
-    const docRef = await db.collection('recipes').add({
-      userId,
-      recipe,
-      createdAt: new Date(),
-    });
-
-    res.status(200).json({ message: 'Recipe saved successfully!', id: docRef.id });
-  } catch (error) {
-    console.error('Error saving recipe:', error);
-    res.status(500).json({ error: 'Failed to save recipe.' });
-  }
-};
+const db = require('../firebase/firebaseAdmin'); // Adjust path relative to this file
 
 const getSavedRecipes = async (req, res) => {
   try {
-    const { userId } = req.query;
+      const { uid } = req.params;
+      const savedRecipesSnapshot = await db.collection('users').doc(uid).collection('savedRecipes').get();
 
-    if (!userId) {
-      return res.status(400).json({ error: 'User ID is required.' });
-    }
+      const savedRecipes = savedRecipesSnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+      }));
 
-    const snapshot = await db.collection('recipes').where('userId', '==', userId).get();
-    const recipes = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-
-    res.status(200).json({ recipes });
+      res.status(200).json({ recipes: savedRecipes });
   } catch (error) {
-    console.error('Error fetching saved recipes:', error);
-    res.status(500).json({ error: 'Failed to retrieve recipes.' });
+      console.error('Error fetching saved recipes:', error);
+      res.status(500).json({ error: 'Failed to fetch saved recipes.' });
   }
 };
 
-module.exports = { saveRecipe, getSavedRecipes };
+module.exports = { getSavedRecipes };
+

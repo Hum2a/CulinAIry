@@ -13,6 +13,7 @@ const Navbar = () => {
         <li><a href="/about">About</a></li>
         {user ? (
           <>
+            <li><a href="/meal-planner" className="hover:underline">Meal Planner</a></li>
             <li><a href="/saved-recipes">Saved Recipes</a></li>
             <li><a href="/profile">Profile</a></li>
             <li><button onClick={logout}>Logout</button></li>
