@@ -52,7 +52,7 @@ const InputForm = ({ onRecipeGenerated }) => {
 
     setLoading(true);
     try {
-      const response = await axios.post(`${process.env.SERVER_URL}/api/recipes/generate`, {
+      const response = await axios.post(`https://culinairy-server.onrender.com/api/recipes/generate`, {
         ingredients: filteredIngredients,
         preferences,
       });
