@@ -105,7 +105,7 @@ const InputForm = ({ onRecipeGenerated }) => {
         <button type="button" className="add-button" onClick={handleAddField}>
           + Add Ingredient
         </button>
-        <button type="submit" className="input-button">
+        <button type="button" className="input-button" onClick={handleSubmit}>
           {loading ? 'Generating...' : 'Generate Recipe'}
         </button>
       </form>
