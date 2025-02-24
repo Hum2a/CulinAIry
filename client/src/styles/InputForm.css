@@ -1,13 +1,23 @@
+:root {
+  --primary-color: #00f5d4;
+  --accent-color: #7b2cbf;
+  --text-color: #ffffff;
+  --glass-background: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+}
+
 .input-form-container {
   padding: 2rem;
   text-align: center;
   animation: fadeIn 1s ease-in-out;
+  position: relative;
+  z-index: 2;
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -16,29 +26,173 @@
 }
 
 .form-title {
-  font-size: 2rem;
-  color: #1a73e8;
-  margin-bottom: 1.5rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: glow 3s ease-in-out infinite alternate;
 }
 
 .input-form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
   width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: var(--glass-background);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-form:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 245, 212, 0.1);
 }
 
 .ingredient-field {
   display: flex;
   align-items: center;
   width: 100%;
-  max-width: 400px;
+  gap: 1rem;
   animation: slideIn 0.3s ease-in-out;
 }
 
+.input-text {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+.input-text:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 15px rgba(0, 245, 212, 0.2);
+  transform: scale(1.02);
+}
+
+.input-text::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Button Styles */
+.add-button, .remove-button, .input-button, .save-button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.add-button {
+  background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+  color: var(--text-color);
+  width: auto;
+  padding: 1rem 2rem;
+}
+
+.remove-button {
+  background: rgba(255, 77, 109, 0.2);
+  color: var(--text-color);
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-size: 1.2rem;
+  backdrop-filter: blur(5px);
+}
+
+.input-button {
+  background: linear-gradient(45deg, var(--accent-color), var(--primary-color));
+  color: var(--text-color);
+  width: 100%;
+  max-width: 300px;
+  margin-top: 1rem;
+  font-weight: 500;
+}
+
+.save-button {
+  background: linear-gradient(45deg, #ff9800, var(--accent-color));
+  color: var(--text-color);
+  padding: 1rem 2rem;
+  margin-top: 1rem;
+}
+
+/* Button Hover Effects */
+.add-button::before,
+.input-button::before,
+.save-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150%;
+  height: 150%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%) rotate(45deg) scale(0);
+  transition: transform 0.6s ease;
+}
+
+.add-button:hover::before,
+.input-button:hover::before,
+.save-button:hover::before {
+  transform: translate(-50%, -50%) rotate(45deg) scale(1);
+}
+
+.add-button:hover,
+.input-button:hover,
+.save-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 245, 212, 0.2);
+}
+
+.remove-button:hover {
+  background: rgba(255, 77, 109, 0.4);
+  transform: scale(1.1);
+}
+
+/* Recipe Container */
+.recipe-container {
+  margin-top: 2rem;
+  padding: 2rem;
+  background: var(--glass-background);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.generated-recipe-title {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.recipe-content {
+  color: var(--text-color);
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+/* Animations */
 @keyframes slideIn {
   from {
     opacity: 0;
@@ -50,90 +204,30 @@
   }
 }
 
-.input-text {
-  flex: 1;
-  padding: 0.5rem;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  margin-right: 0.5rem;
-  transition: border-color 0.3s ease, transform 0.2s ease;
+@keyframes glow {
+  0% {
+    filter: drop-shadow(0 0 2px var(--primary-color));
+  }
+  100% {
+    filter: drop-shadow(0 0 10px var(--accent-color));
+  }
 }
 
-.input-text:focus {
-  outline: none;
-  border-color: #1a73e8;
-  transform: scale(1.02);
-  box-shadow: 0 0 5px rgba(26, 115, 232, 0.5);
-}
+/* Responsive Design */
+@media (max-width: 768px) {
+  .input-form-container {
+    padding: 1rem;
+  }
 
-.add-button, .remove-button, .input-button, .save-button {
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
+  .form-title {
+    font-size: 2rem;
+  }
 
-.add-button {
-  background: linear-gradient(to right, #4caf50, #8bc34a);
-  color: white;
-}
+  .input-form {
+    padding: 1.5rem;
+  }
 
-.add-button:hover {
-  background: linear-gradient(to right, #388e3c, #689f38);
-  transform: scale(1.05);
-}
-
-.remove-button {
-  background-color: #e74c3c;
-  color: white;
-  font-size: 1.2rem;
-  border-radius: 50%;
-  width: 2rem;
-  height: 2rem;
-  text-align: center;
-  line-height: 1.8rem;
-}
-
-.remove-button:hover {
-  background-color: #c0392b;
-}
-
-.input-button {
-  background: linear-gradient(to right, #1a73e8, #4fc3f7);
-  color: white;
-  margin-top: 1rem;
-}
-
-.input-button:hover {
-  background: linear-gradient(to right, #135bb5, #0288d1);
-  transform: scale(1.05);
-}
-
-.save-button {
-  background: linear-gradient(to right, #ff9800, #ffc107);
-  color: white;
-  margin-top: 1rem;
-}
-
-.save-button:hover {
-  background: linear-gradient(to right, #f57c00, #ffb300);
-  transform: scale(1.05);
-}
-
-.recipe-container {
-  margin-top: 2rem;
-}
-
-.generated-recipe-title {
-  font-size: 1.5rem;
-  color: #1a73e8;
-  margin-bottom: 1rem;
-}
-
-.recipe-content {
-  font-size: 1rem;
-  color: #555;
+  .input-text {
+    padding: 0.75rem 1rem;
+  }
 }

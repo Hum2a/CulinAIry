@@ -8,6 +8,7 @@ const Profile = () => {
   const { user } = useAuth();
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isLoaded, setIsLoaded] = useState(false);
   const [formData, setFormData] = useState({
     displayName: '',
     diet: '',
@@ -19,11 +20,9 @@ const Profile = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       if (!user) return;
-
       try {
         const docRef = doc(db, 'users', user.uid);
         const docSnap = await getDoc(docRef);
-
         if (docSnap.exists()) {
           setProfile(docSnap.data());
           setFormData({
@@ -38,9 +37,9 @@ const Profile = () => {
         console.error('Error fetching profile:', error);
       } finally {
         setLoading(false);
+        setIsLoaded(true);
       }
     };
-
     fetchProfile();
   }, [user]);
 
@@ -54,7 +53,6 @@ const Profile = () => {
 
   const handleSave = async () => {
     if (!user) return;
-
     try {
       const docRef = doc(db, 'users', user.uid);
       await updateDoc(docRef, {
@@ -73,66 +71,102 @@ const Profile = () => {
     }
   };
 
-  if (loading) return <p className="loading">Loading...</p>;
+  if (loading) return <div className="loading">Loading...</div>;
 
   return (
-    <div className="profile-container">
-      <h1 className="profile-title">Your Profile</h1>
-      <div className="profile-form">
-        <label>
-          Display Name:
-          <input
-            type="text"
-            name="displayName"
-            value={formData.displayName}
-            onChange={handleChange}
-            placeholder="Enter your display name"
-            className="form-input"
-          />
-        </label>
-        <label>
-          Dietary Preference:
-          <select name="diet" value={formData.diet} onChange={handleChange} className="form-select">
-            <option value="">None</option>
-            <option value="Vegetarian">Vegetarian</option>
-            <option value="Vegan">Vegan</option>
-            <option value="Gluten-Free">Gluten-Free</option>
-            <option value="Custom">Custom</option>
-          </select>
-        </label>
-        {formData.diet === 'Custom' && (
-          <label>
-            Custom Dietary Preference:
-            <input
-              type="text"
-              name="customDiet"
-              value={formData.customDiet}
-              onChange={handleChange}
-              placeholder="Enter your custom preference"
-              className="form-input"
-            />
-          </label>
-        )}
-        <label>
-          Theme:
-          <select name="theme" value={formData.theme} onChange={handleChange} className="form-select">
-            <option value="Light">Light</option>
-            <option value="Dark">Dark</option>
-          </select>
-        </label>
-        <label>
-          Notifications:
-          <input
-            type="checkbox"
-            name="notifications"
-            checked={formData.notifications}
-            onChange={handleChange}
-            className="form-checkbox"
-          />
-        </label>
-        <button onClick={handleSave} className="form-button">
-          Save Changes
-        </button>
+    <div className={`profile-page ${isLoaded ? 'loaded' : ''}`}>
+      <div className="background-animation">
+        <div className="gradient-sphere"></div>
+        <div className="gradient-sphere"></div>
+      </div>
+
+      <div className="content-wrapper">
+        <div className="profile-container glass-card">
+          <h1 className="profile-title">Your <span className="highlight">Profile</span></h1>
+          
+          <div className="profile-form">
+            <div className="form-group">
+              <label>
+                Display Name
+                <input
+                  type="text"
+                  name="displayName"
+                  value={formData.displayName}
+                  onChange={handleChange}
+                  placeholder="Enter your display name"
+                  className="form-input"
+                />
+              </label>
+            </div>
+
+            <div className="form-group">
+              <label>
+                Dietary Preference
+                <select 
+                  name="diet" 
+                  value={formData.diet} 
+                  onChange={handleChange} 
+                  className="form-select"
+                >
+                  <option value="">None</option>
+                  <option value="Vegetarian">Vegetarian</option>
+                  <option value="Vegan">Vegan</option>
+                  <option value="Gluten-Free">Gluten-Free</option>
+                  <option value="Custom">Custom</option>
+                </select>
+              </label>
+            </div>
+
+            {formData.diet === 'Custom' && (
+              <div className="form-group">
+                <label>
+                  Custom Dietary Preference
+                  <input
+                    type="text"
+                    name="customDiet"
+                    value={formData.customDiet}
+                    onChange={handleChange}
+                    placeholder="Enter your custom preference"
+                    className="form-input"
+                  />
+                </label>
+              </div>
+            )}
+
+            <div className="form-group">
+              <label>
+                Theme
+                <select 
+                  name="theme" 
+                  value={formData.theme} 
+                  onChange={handleChange} 
+                  className="form-select"
+                >
+                  <option value="Light">Light</option>
+                  <option value="Dark">Dark</option>
+                </select>
+              </label>
+            </div>
+
+            <div className="form-group checkbox-group">
+              <label className="checkbox-label">
+                Notifications
+                <input
+                  type="checkbox"
+                  name="notifications"
+                  checked={formData.notifications}
+                  onChange={handleChange}
+                  className="form-checkbox"
+                />
+                <span className="checkbox-custom"></span>
+              </label>
+            </div>
+
+            <button onClick={handleSave} className="form-button">
+              Save Changes
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

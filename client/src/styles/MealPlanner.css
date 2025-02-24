@@ -1,136 +1,275 @@
+:root {
+  --primary-color: #00f5d4;
+  --accent-color: #7b2cbf;
+  --text-color: #ffffff;
+  --glass-background: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+}
+
 body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(to bottom, #f9fafb, #e3f2fd);
-    margin: 0;
-    padding: 0;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(to bottom, #f9fafb, #e3f2fd);
+  margin: 0;
+  padding: 0;
+}
+
+.meal-planner {
+  min-height: 100vh;
+  background: #0f0f1e;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.meal-planner.loaded {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.8s ease-out;
+}
+
+/* Background Animation */
+.background-animation {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.gradient-sphere {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  animation: float 20s infinite ease-in-out;
+}
+
+.gradient-sphere:nth-child(1) {
+  background: var(--primary-color);
+  width: 400px;
+  height: 400px;
+  top: -100px;
+  right: -100px;
+  opacity: 0.3;
+}
+
+.gradient-sphere:nth-child(2) {
+  background: var(--accent-color);
+  width: 300px;
+  height: 300px;
+  bottom: -50px;
+  left: -50px;
+  opacity: 0.3;
+  animation-delay: -10s;
+}
+
+/* Content Wrapper */
+.content-wrapper {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: glow 3s ease-in-out infinite alternate;
+}
+
+/* Form Styling */
+.meal-planner-form {
+  background: var(--glass-background);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 2rem;
+  margin-bottom: 3rem;
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  transition: transform 0.3s ease;
+}
+
+.meal-planner-form:hover {
+  transform: translateY(-5px);
+}
+
+.form-group {
+  position: relative;
+  min-width: 200px;
+}
+
+.form-label {
+  color: var(--text-color);
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  display: block;
+  text-align: left;
+}
+
+.form-input {
+  width: 100%;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  color: var(--text-color);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 15px rgba(0, 245, 212, 0.3);
+  transform: scale(1.02);
+}
+
+.form-button {
+  background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.form-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150%;
+  height: 150%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%) rotate(45deg) scale(0);
+  transition: transform 0.6s ease;
+}
+
+.form-button:hover::before {
+  transform: translate(-50%, -50%) rotate(45deg) scale(1);
+}
+
+.form-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 245, 212, 0.2);
+}
+
+/* Meal Plan Display */
+.meal-plan {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.day-plan {
+  background: var(--glass-background);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.day-plan:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 245, 212, 0.1);
+}
+
+.day-title {
+  font-size: 1.8rem;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.meal-slot {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+}
+
+.meal-slot:hover {
+  transform: scale(1.02);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.meal-title {
+  color: var(--accent-color);
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.meal-content {
+  color: var(--text-color);
+  opacity: 0.9;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(30px, 30px);
+  }
+}
+
+@keyframes glow {
+  0% {
+    filter: drop-shadow(0 0 2px var(--primary-color));
+  }
+  100% {
+    filter: drop-shadow(0 0 10px var(--accent-color));
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   .meal-planner {
-    padding: 2rem;
-    text-align: center;
+    padding: 1rem;
   }
-  
+
   .title {
     font-size: 2.5rem;
-    color: #1a73e8;
-    margin-bottom: 2rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    animation: fadeIn 1s ease-in-out;
   }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
+
   .meal-planner-form {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    margin-bottom: 2rem;
-  }
-  
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .form-label {
-    font-size: 1.1rem;
-    font-weight: bold;
-    color: #444;
-    margin-bottom: 0.5rem;
-  }
-  
-  .form-input {
-    padding: 0.5rem;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    width: 200px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-  
-  .form-input:focus {
-    outline: none;
-    border-color: #1a73e8;
-    transform: scale(1.02);
-    box-shadow: 0 0 10px rgba(26, 115, 232, 0.5);
-  }
-  
-  .form-button {
-    padding: 0.75rem 2rem;
-    background: linear-gradient(to right, #1a73e8, #4fc3f7);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: transform 0.2s ease, background 0.3s ease;
-  }
-  
-  .form-button:hover {
-    transform: scale(1.05);
-    background: linear-gradient(to right, #135bb5, #0288d1);
-  }
-  
-  .meal-plan {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    justify-content: center;
-  }
-  
-  .day-plan {
-    background: white;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
     padding: 1.5rem;
-    width: 300px;
-    transition: transform 0.2s ease, box-shadow 0.3s ease;
   }
-  
-  .day-plan:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+
+  .form-group {
+    width: 100%;
   }
-  
-  .day-title {
-    font-size: 1.5rem;
-    color: #1a73e8;
-    margin-bottom: 1rem;
-    text-transform: uppercase;
-  }
-  
-  .meal-slot {
-    margin-top: 1rem;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-  }
-  
-  .meal-slot:hover {
-    background-color: #f0f8ff;
-    transform: scale(1.03);
-  }
-  
-  .meal-title {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  .meal-content {
-    font-size: 1rem;
-    color: #666;
-  }
+}
   
