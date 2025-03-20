@@ -1,3 +1,11 @@
 # https://www.robotstxt.org/robotstxt.html
+# Allow all crawlers
 User-agent: *
-Disallow:
+Allow: /
+
+# Sitemap location
+Sitemap: https://culinairy.app/sitemap.xml
+
+# Disallow access to API calls and private routes
+Disallow: /api/
+Disallow: /admin/
