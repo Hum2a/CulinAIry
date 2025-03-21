@@ -4,7 +4,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://culinairy.app/sitemap.xml
+Sitemap: https://culinairy-239n.onrender.com/sitemap.xml
 
 # Disallow access to API calls and private routes
 Disallow: /api/

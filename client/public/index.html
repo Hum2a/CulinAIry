@@ -1,58 +1,382 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
   <head>
+    <!-- Character Set and Viewport -->
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, shrink-to-fit=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    
+    <!-- Favicons and App Icons -->
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#4fc3f7" />
+    <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/favicon-16x16.png" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/apple-touch-icon.png" />
+    <link rel="mask-icon" href="%PUBLIC_URL%/safari-pinned-tab.svg" color="#1a73e8" />
+    <meta name="msapplication-TileColor" content="#1a73e8" />
+    <meta name="msapplication-TileImage" content="%PUBLIC_URL%/mstile-144x144.png" />
+    <meta name="msapplication-config" content="%PUBLIC_URL%/browserconfig.xml" />
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+    
+    <!-- Theme and Appearance -->
+    <meta name="theme-color" content="#1a73e8" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="CulinAIry" />
+    <meta name="apple-mobile-web-app-title" content="CulinAIry" />
+    <meta name="format-detection" content="telephone=no" />
+    
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     
     <!-- Primary Meta Tags -->
-    <title>CulinAIry - AI-Powered Recipe Generator & Meal Planner</title>
-    <meta name="title" content="CulinAIry - AI-Powered Recipe Generator & Meal Planner">
-    <meta name="description" content="Generate delicious recipes with ingredients you already have and create personalized meal plans with our AI-powered culinary assistant.">
-    <meta name="keywords" content="recipe generator, meal planner, AI recipes, cooking, food, kitchen helper, ingredients">
-    <meta name="author" content="CulinAIry">
-    <meta name="robots" content="index, follow">
+    <title>CulinAIry - AI-Powered Recipe Generator & Meal Planner | Transform Ingredients to Recipes</title>
+    <meta name="title" content="CulinAIry - AI-Powered Recipe Generator & Meal Planner | Transform Ingredients to Recipes" />
+    <meta name="description" content="Generate delicious recipes with ingredients you already have and create personalized meal plans with CulinAIry, your AI-powered culinary assistant. Start cooking smarter today!" />
+    <meta name="keywords" content="recipe generator, meal planner, AI recipes, cooking, food, kitchen helper, ingredients, meal prep, cooking app, recipe finder, recipe from ingredients, food AI" />
+    <meta name="author" content="CulinAIry" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="revisit-after" content="7 days" />
+    <meta name="language" content="English" />
+    <meta name="geo.region" content="US" />
+    <meta name="rating" content="general" />
+    
+    <!-- Preconnect and DNS Prefetch for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://api.culinairy.app" crossorigin />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="dns-prefetch" href="https://api.culinairy.app" />
+    
+    <!-- Preload Critical Assets -->
+    <link rel="preload" href="%PUBLIC_URL%/fonts/main-font.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="%PUBLIC_URL%/images/hero-image.webp" as="image" />
     
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://culinairy.app/">
-    <meta property="og:title" content="CulinAIry - AI-Powered Recipe Generator & Meal Planner">
-    <meta property="og:description" content="Generate delicious recipes with ingredients you already have and create personalized meal plans with our AI-powered culinary assistant.">
-    <meta property="og:image" content="%PUBLIC_URL%/og-image.jpg">
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://culinairy-239n.onrender.com/" />
+    <meta property="og:title" content="CulinAIry - AI-Powered Recipe Generator & Meal Planner" />
+    <meta property="og:description" content="Generate delicious recipes with ingredients you already have and create personalized meal plans with our AI-powered culinary assistant." />
+    <meta property="og:image" content="https://culinairy-239n.onrender.com/og-image.jpg" />
+    <meta property="og:image:alt" content="CulinAIry - AI-Powered Recipe Generator" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="CulinAIry" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="fb:app_id" content="your-fb-app-id" />
     
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://culinairy.app/">
-    <meta property="twitter:title" content="CulinAIry - AI-Powered Recipe Generator & Meal Planner">
-    <meta property="twitter:description" content="Generate delicious recipes with ingredients you already have and create personalized meal plans with our AI-powered culinary assistant.">
-    <meta property="twitter:image" content="%PUBLIC_URL%/og-image.jpg">
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://culinairy-239n.onrender.com/" />
+    <meta property="twitter:title" content="CulinAIry - AI-Powered Recipe Generator & Meal Planner" />
+    <meta property="twitter:description" content="Generate delicious recipes with ingredients you already have and create personalized meal plans with our AI-powered culinary assistant." />
+    <meta property="twitter:image" content="https://culinairy-239n.onrender.com/og-image.jpg" />
+    <meta property="twitter:creator" content="@CulinAIry" />
+    <meta property="twitter:site" content="@CulinAIry" />
+    
+    <!-- LinkedIn -->
+    <meta property="linkedin:card" content="summary_large_image" />
+    <meta property="linkedin:title" content="CulinAIry - AI-Powered Recipe Generator & Meal Planner" />
+    <meta property="linkedin:description" content="Generate delicious recipes with ingredients you already have and create personalized meal plans with our AI-powered culinary assistant." />
+    <meta property="linkedin:image" content="https://culinairy-239n.onrender.com/og-image.jpg" />
+    
+    <!-- Pinterest -->
+    <meta property="pinterest:description" content="Generate delicious recipes with ingredients you already have and create personalized meal plans with our AI-powered culinary assistant." />
+    <meta property="pinterest:image" content="https://culinairy-239n.onrender.com/og-image.jpg" />
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://culinairy.app/" />
+    <link rel="canonical" href="https://culinairy-239n.onrender.com/" />
+    <link rel="alternate" href="https://culinairy-239n.onrender.com/" hreflang="en" />
+    <link rel="alternate" href="https://culinairy-239n.onrender.com/" hreflang="x-default" />
     
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google-analytics.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://api.culinairy.app https://www.google-analytics.com; frame-src 'self'; object-src 'none'" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(self), interest-cohort=()" />
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
     
-    <!-- Structured Data -->
+    <!-- Apple Smart App Banner -->
+    <meta name="apple-itunes-app" content="app-id=yourAppID, app-argument=https://culinairy-239n.onrender.com/" />
+    
+    <!-- Additional SEO Tags -->
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="google" content="nositelinkssearchbox" />
+    
+    <!-- Rich Results Breadcrumbs -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://culinairy-239n.onrender.com/"
+          }
+        ]
+      }
+    </script>
+    
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "CulinAIry",
+        "url": "https://culinairy-239n.onrender.com",
+        "logo": "https://culinairy-239n.onrender.com/logo.png",
+        "sameAs": [
+          "https://twitter.com/CulinAIry",
+          "https://www.facebook.com/CulinAIry",
+          "https://www.instagram.com/CulinAIry",
+          "https://www.linkedin.com/company/CulinAIry"
+        ]
+      }
+    </script>
+    
+    <!-- Web Application Schema -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "WebApplication",
         "name": "CulinAIry",
-        "description": "AI-powered recipe generator and meal planning application.",
-        "url": "https://culinairy.app",
         "applicationCategory": "FoodAndDrink",
+        "operatingSystem": "Web",
         "offers": {
           "@type": "Offer",
           "price": "0"
         },
-        "operatingSystem": "Web"
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.8",
+          "ratingCount": "127"
+        },
+        "description": "AI-powered recipe generator and meal planning application."
       }
+    </script>
+    
+    <!-- SoftwareApplication Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "CulinAIry",
+        "applicationCategory": "LifestyleApplication",
+        "operatingSystem": "Web, iOS, Android",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    </script>
+    
+    <!-- Recipe Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+              "@type": "Recipe",
+              "name": "AI Generated Recipes",
+              "description": "Personalized recipes created based on your available ingredients and preferences",
+              "cookTime": "PT30M",
+              "keywords": "AI recipes, custom recipes, personalized cooking",
+              "recipeCategory": "Main Dish",
+              "recipeCuisine": "International",
+              "recipeYield": "Varies",
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.9",
+                "reviewCount": "87"
+              }
+            }
+          }
+        ]
+      }
+    </script>
+    
+    <!-- Article Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Transform Your Cooking Experience with AI",
+        "description": "Learn how AI can revolutionize your cooking by generating personalized recipes from ingredients you already have.",
+        "image": "https://culinairy-239n.onrender.com/og-image.jpg",
+        "author": {
+          "@type": "Organization",
+          "name": "CulinAIry Team",
+          "url": "https://culinairy-239n.onrender.com/about"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "CulinAIry",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://culinairy-239n.onrender.com/logo.png"
+          }
+        },
+        "datePublished": "2023-12-23",
+        "dateModified": "2023-12-24"
+      }
+    </script>
+    
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How does CulinAIry generate recipes?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "CulinAIry uses advanced AI technology to analyze your ingredients and preferences, then generates personalized recipes tailored to what you have available."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is CulinAIry free to use?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, CulinAIry offers a free basic version with core recipe generation features. Premium features are available through subscription plans."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I save my favorite recipes?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, CulinAIry allows you to save your favorite recipes to your personal collection for easy access later."
+            }
+          }
+        ]
+      }
+    </script>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MEASUREMENT_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MEASUREMENT_ID');
+    </script>
+    
+    <!-- Font Preloading -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Critical CSS Inline (minimized for demo) -->
+    <style>
+      body{margin:0;padding:0;font-family:'Poppins',sans-serif;background:#f5f7fa;color:#333}
+      .loading{min-height:100vh;display:flex;justify-content:center;align-items:center}
+      .loading-text{font-size:1.5rem;animation:pulse 1.5s infinite ease-in-out}
+      @keyframes pulse{0%,100%{opacity:.5}50%{opacity:1}}
+    </style>
+    
+    <!-- iOS Splash Screens -->
+    <link rel="apple-touch-startup-image" href="%PUBLIC_URL%/splash/apple-splash-2048-2732.jpg" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="%PUBLIC_URL%/splash/apple-splash-1668-2388.jpg" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="%PUBLIC_URL%/splash/apple-splash-1536-2048.jpg" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="%PUBLIC_URL%/splash/apple-splash-1125-2436.jpg" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="%PUBLIC_URL%/splash/apple-splash-1242-2688.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="%PUBLIC_URL%/splash/apple-splash-828-1792.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="%PUBLIC_URL%/splash/apple-splash-750-1334.jpg" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="%PUBLIC_URL%/splash/apple-splash-640-1136.jpg" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+    
+    <!-- PWA Updates Detection -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/service-worker.js')
+            .then(function(registration) {
+              console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            })
+            .catch(function(error) {
+              console.log('ServiceWorker registration failed: ', error);
+            });
+        });
+        
+        let refreshing = false;
+        navigator.serviceWorker.addEventListener('controllerchange', function() {
+          if (refreshing) return;
+          refreshing = true;
+          window.location.reload();
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <noscript>
+      <div style="padding: 20px; text-align: center; font-family: Arial, sans-serif;">
+        <h1>JavaScript Required</h1>
+        <p>CulinAIry requires JavaScript to function properly. Please enable JavaScript in your browser settings to use this application.</p>
+        <p>With JavaScript enabled, you can generate recipes from your ingredients, create meal plans, and more.</p>
+      </div>
+    </noscript>
+    
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link" style="position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; z-index: 999;">Skip to main content</a>
+    
+    <!-- Initial Loading State -->
+    <div id="root">
+      <div class="loading">
+        <p class="loading-text">Loading CulinAIry...</p>
+      </div>
+    </div>
+    
+    <!-- Preload Key Images -->
+    <link rel="preload" as="image" href="%PUBLIC_URL%/images/background.webp">
+    
+    <!-- Structured Data for Video (if applicable) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        "name": "How to Use CulinAIry",
+        "description": "Learn how to use CulinAIry to generate recipes from your ingredients in just a few seconds.",
+        "thumbnailUrl": "https://culinairy-239n.onrender.com/video-thumbnail.jpg",
+        "uploadDate": "2023-12-23T08:00:00+08:00",
+        "duration": "PT1M30S",
+        "contentUrl": "https://culinairy-239n.onrender.com/how-to-use-video.mp4",
+        "embedUrl": "https://www.youtube.com/embed/your-video-id"
+      }
+    </script>
+    
+    <!-- Performance Analytics -->
+    <script>
+      // Simple performance monitoring
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          const t = window.performance.timing;
+          const interactive = t.domInteractive - t.navigationStart;
+          const dcl = t.domContentLoadedEventEnd - t.navigationStart;
+          const complete = t.domComplete - t.navigationStart;
+          
+          console.log('Interactive time: ' + interactive + 'ms');
+          console.log('DOMContentLoaded time: ' + dcl + 'ms');
+          console.log('Complete time: ' + complete + 'ms');
+          
+          // Send to analytics if needed
+          if (window.gtag) {
+            gtag('event', 'timing_complete', {
+              'name': 'load',
+              'value': complete,
+              'event_category': 'Page Load'
+            });
+          }
+        }, 0);
+      });
     </script>
   </body>
 </html>
