@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from 'react-helmet';
 import InputForm from '../components/InputForm';
 import RecipeDisplay from '../components/RecipeDisplay';
 import '../styles/Home.css';
