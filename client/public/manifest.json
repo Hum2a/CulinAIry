@@ -1,6 +1,7 @@
 {
   "short_name": "CulinAIry",
-  "name": "CulinAIry",
+  "name": "CulinAIry - AI-Powered Recipe Generator",
+  "description": "Generate delicious recipes with ingredients you already have and create personalized meal plans with our AI-powered culinary assistant.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,18 +9,23 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "android-chrome-192x192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "android-chrome-512x512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
   ],
   "start_url": "./",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#1a73e8",
+  "background_color": "#ffffff",
+  "orientation": "portrait",
+  "scope": "/",
+  "lang": "en-US",
+  "dir": "ltr",
+  "prefer_related_applications": false
 }
